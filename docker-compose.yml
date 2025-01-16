@@ -19,13 +19,12 @@ services:
 
   web:
     build: .
-    container_name: django
+    container_name: django-backend
     ports:
       - '8000:8000'
     volumes:
       - .:/app
     environment:
-      - DJANGO_ENV=${DJANGO_ENV}
       - DATABASE_NAME=${DATABASE_NAME}
       - DATABASE_USER=${DATABASE_USER}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
