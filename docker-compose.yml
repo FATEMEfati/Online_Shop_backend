@@ -1,0 +1,65 @@
+version: '3.8'  # Specify the version
+
+services:
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+  my-postgres:
+    image: postgres:15
+    container_name: db
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: django
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_ENV=${DJANGO_ENV}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - my-postgres
+      - redis
+  worker:
+    build: .
+    command: celery -A Online_shop worker --loglevel=info
+    volumes:
+      - .:/app
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - web
+      - redis
+
+  beat:
+    build: .
+    command: celery -A Online_shop beat -l info
+    volumes:
+      - .:/app
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - web
+      - redis
+
+
+volumes:
+  pg_data:
