@@ -1,0 +1,25 @@
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+.env/
+*.env
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+*/migrations/__init__.py
+
+Static files
+/static/
+media/
+
+#Coverage reports
+.coverage
+*.cover
+
+.celerybeat-schedule.bak
+.celerybeat-schedule.dat
+.celerybeat-schedule.dir
+
