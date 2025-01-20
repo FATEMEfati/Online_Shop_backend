@@ -4,7 +4,7 @@
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [database set up](#database set up)
+- [database_set_up](#database set up)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
@@ -27,7 +27,7 @@
 - postgresql
 - Git for version control
 
-## database set up
+## database_set_up
    To set up the PostgreSQL database for this Django project, follow these steps:
 
    ## Requirements
