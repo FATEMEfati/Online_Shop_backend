@@ -34,20 +34,25 @@
    cd online-shop
 
 2.**Create a virtual environment:**
+   ```bash
   python -m venv env
   source env/bin/activate  # On Windows use `env\Scripts\activate
 
 3.**Install the required packages:**
+   ```bash
   pip install -r requarment
 
 4.**Set up the database:**
+   ```bash
   python manage.py migrate
 5.**Create a superuser (optional):**
   python manage.py createsuperuser
 
 6.**Run the development server:**
+   ```bash
   python manage.py runserver
 7.**Open your browser and navigate to:**
+   ```bash
   http://127.0.0.1:8000/
 
 ## Usage
