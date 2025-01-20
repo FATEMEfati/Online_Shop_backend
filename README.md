@@ -38,23 +38,23 @@
     python -m venv env
     source env/bin/activate  # On Windows use `env\Scripts\activate
 
-3.**Install the required packages:**
-  ```bash
-  pip install -r requarment
+3.  **Install the required packages:**
+    ```bash
+    pip install -r requarment
 
-4.**Set up the database:**
-  ```bash
-  python manage.py migrate
-5.**Create a superuser (optional):**
-  ```bash
-  python manage.py createsuperuser
+4.  **Set up the database:**
+    ```bash
+    python manage.py migrate
+5.  **Create a superuser (optional):**
+    ```bash
+    python manage.py createsuperuser
 
-6.**Run the development server:**
-  ```bash
-  python manage.py runserver
-7.**Open your browser and navigate to:**
-   ```bash
-  http://127.0.0.1:8000/
+6.  **Run the development server:**
+    ```bash
+    python manage.py runserver
+7.  **Open your browser and navigate to:**
+    ```bash
+    http://127.0.0.1:8000/
 
 ## Usage
 After setting up the project, you can use the API to perform various operations related to users, products, and discounts. You can also access the Django admin panel at http://127.0.0.1:8000/admin/ using the superuser credentials you created.
