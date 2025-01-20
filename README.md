@@ -97,31 +97,31 @@ POST api-v1/create_order/
 
 GET api-v1/show_cart/
 
-## Project Structure
-```bash
-online_shop_backend/
-├── manage.py
-├── requarment
-├── online_shop/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── users/
-│   ├── models.py
-│   ├── views.py
-│   └── ...
-├── products/
-│   ├── models.py
-│   ├── views.py
-│   └── ...
-├── Orders/
-│   ├── models.py
-│   ├── views.py
-│   └── ...
-└── discounts/
-    ├── models.py
-    ├── views.py
-    └── ...
+##   Project Structure
+     ```bash
+     online_shop_backend/
+     ├── manage.py
+     ├── requarment
+     ├── online_shop/
+     │   ├── settings.py
+     │   ├── urls.py
+     │   └── wsgi.py
+     ├── users/
+     │   ├── models.py
+     │   ├── views.py
+     │   └── ...
+     ├── products/
+     │   ├── models.py
+     │   ├── views.py
+     │   └── ...
+     ├── Orders/
+     │   ├── models.py
+     │   ├── views.py
+     │   └── ...
+     └── discounts/
+         ├── models.py
+         ├── views.py
+         └── ...
 
 ## Contributing
 Contributions are welcome! If you want to contribute to the project, please follow these steps:
