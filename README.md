@@ -31,25 +31,26 @@
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/FATEMEfati/Online_Shop_backend.git
-   cd online-shop
+   cd online_shop_backend
 
 2.**Create a virtual environment:**
-   ```bash
+  ```bash
   python -m venv env
   source env/bin/activate  # On Windows use `env\Scripts\activate
 
 3.**Install the required packages:**
-   ```bash
+  ```bash
   pip install -r requarment
 
 4.**Set up the database:**
-   ```bash
+  ```bash
   python manage.py migrate
 5.**Create a superuser (optional):**
+  ```bash
   python manage.py createsuperuser
 
 6.**Run the development server:**
-   ```bash
+  ```bash
   python manage.py runserver
 7.**Open your browser and navigate to:**
    ```bash
@@ -97,7 +98,7 @@ POST api-v1/create_order/
 GET api-v1/show_cart/
 
 ## Project Structure
-
+```bash
 online_shop_backend/
 ├── manage.py
 ├── requarment
