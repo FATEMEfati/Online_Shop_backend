@@ -33,10 +33,10 @@
    git clone https://github.com/FATEMEfati/Online_Shop_backend.git
    cd online_shop_backend
 
-2.**Create a virtual environment:**
-  ```bash
-  python -m venv env
-  source env/bin/activate  # On Windows use `env\Scripts\activate
+2.  **Create a virtual environment:**
+    ```bash
+    python -m venv env
+    source env/bin/activate  # On Windows use `env\Scripts\activate
 
 3.**Install the required packages:**
   ```bash
