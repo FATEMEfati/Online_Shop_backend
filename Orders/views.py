@@ -73,14 +73,6 @@ class OrderItemList(APIView):
         data = OrderItem.objects.filter(order=order_id,is_delete=False)
         serializer = OrderItemSerializer(data, many=True)
         return Response(serializer.data)
-    
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.utils import timezone
-from django.db.models import Sum, F
-from datetime import timedelta
-from .models import OrderItem  # Make sure to import your OrderItem model
-from .serializers import TopProductSerializer  # Make sure to import your serializer
 
 class TopProduct(APIView):
     """

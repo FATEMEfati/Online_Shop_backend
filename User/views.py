@@ -260,11 +260,15 @@ class GenerateCodeView(APIView):
         """
         email = request.data.get('email')
         if not email:
-            return Response({'message': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
 
+        
         code = ''.join(random.choices(string.digits, k=6))
+        
+        
         cache.set(email, code, timeout=300)
 
+        
         send_mail(
             'Your One-Time Code',
             f'Your one-time code is: {code}',
@@ -274,6 +278,7 @@ class GenerateCodeView(APIView):
         )
 
         return Response({'message': 'Code sent to your email.'}, status=status.HTTP_200_OK)
+
 
 
 class ValidateCodeView(APIView):

@@ -1,6 +1,9 @@
 from django.test import TestCase
 from .models import Category, Product, ProductAttribute, Diversity, Gallery
 from django.core.cache import cache
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 class ModelsTestCase(TestCase):
     """Test case for the models in the application."""
@@ -101,3 +104,99 @@ class ModelsTestCase(TestCase):
         ProductAttribute.objects.all().delete()
         Diversity.objects.all().delete()
         Gallery.objects.all().delete()
+
+class ProductViewTests(APITestCase):
+    
+    def setUp(self):
+        # Create sample data for testing
+        self.category = Category.objects.create(category_name="Electronics")
+        self.product = Product.objects.create(
+            product_name="Smartphone",
+            category=self.category,
+            price=699.99,
+            description="Latest model smartphone",
+            is_discount = True
+        )
+        self.product_attribute = ProductAttribute.objects.create(
+            product=self.product,
+            key="Color",
+            value="Black"
+        )
+        self.diversity = Diversity.objects.create(
+            product=self.product,
+            color="Black",
+            size="M",
+            inventory=10
+        )
+        self.gallery = Gallery.objects.create(
+            product=self.product,
+            banner=True,
+            picture="path/to/image.jpg"  
+        )
+    
+    def test_product_list(self):
+        url = reverse('product-list')  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_product_list_with_discount_filter(self):
+        self.product.is_discount = True
+        self.product.save()
+        url = reverse('product-list') + '?is_discount=true'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_diversity_list(self):
+        url = reverse('product-diversity-list')  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_product_attribute_list(self):
+        url = reverse('product_attribute', args=[self.product.id])  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_category_list(self):
+        url = reverse('category-list')  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_category_items(self):
+        url = reverse('category-detail', args=[self.category.id])  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_product_cat(self):
+        url = reverse('product_for_cat', args=[self.category.id])  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_product_details(self):
+        url = reverse('product_details', args=[self.product.id])  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_product_diversity_details(self):
+        url = reverse('product_diversity_details', args=[self.product.id])  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_gallery_list(self):
+        url = reverse('gallery-list')  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_search_items(self):
+        url = reverse('search_items') + '?q=Smartphone'  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_search_items_no_query(self):
+        url = reverse('search_items')  # Adjust according to your URL configuration
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

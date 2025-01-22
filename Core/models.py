@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin,BaseUserManager
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import Group, Permission
 class BaseModel(models.Model):
 
     is_delete = models.BooleanField(default= False)

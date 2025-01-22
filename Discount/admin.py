@@ -42,7 +42,7 @@ class DiscountAdmin(admin.ModelAdmin):
         None - Inherits methods from ModelAdmin.
     """
     list_display = ('id', 'discount_type', 'product', 'discount_value', 'is_active')
-    search_fields = ('product__name',)
+    search_fields = ('discount_type',)
     list_filter = ('discount_type',)
     ordering = ('-discount_value',)
     exclude = ('deleted_at',)
