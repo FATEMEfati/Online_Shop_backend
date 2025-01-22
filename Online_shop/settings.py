@@ -217,13 +217,12 @@ CACHES = {
     }
 }
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fatemenoormohammadi.dc@gmail.com'
-EMAIL_HOST_PASSWORD = 'ovwwdmlbnkwdwkdj'
+EMAIL_HOST_PASSWORD = 'ternebdogxftuhli'
 
 SECURE_COOKIES = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -238,14 +237,14 @@ CELERY_TIMEZONE = 'UTC'
 CELERY_BEAT_SCHEDULE = {
     'delete-unactivated-users-every-day': {
         'task': 'User.tasks.delete_unactivated_users',
-        'schedule': crontab(minute=0, hour=0),  
+        'schedule': crontab(minute='*/5'),  
     },
     'delete-unpaid-orders-every-15-minutes': {
         'task': 'User.tasks.delete_unpaid_orders',
-        'schedule': crontab(minute='*/15'),  
+        'schedule': crontab(minute='*/5'),  
     },
     'clear-old-cart-items-every-20-seconds': {
         'task': 'User.tasks.clear_old_cart_items',
-        'schedule': crontab(minute='*/30'),  # Run every 5 seconds
+        'schedule': crontab(minute='*/1'),  # Run every 5 seconds
     },
 }
