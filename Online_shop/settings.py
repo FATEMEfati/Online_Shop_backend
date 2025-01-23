@@ -243,8 +243,8 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'User.tasks.delete_unpaid_orders',
         'schedule': crontab(minute='*/5'),  
     },
-    'clear-old-cart-items-every-20-seconds': {
-        'task': 'User.tasks.clear_old_cart_items',
-        'schedule': crontab(minute='*/1'),  # Run every 5 seconds
+    'clear-old-cart-items-every-day': {
+    'task': 'User.tasks.clear_old_cart_items',
+    'schedule': crontab(minute=0, hour=0), 
     },
 }
