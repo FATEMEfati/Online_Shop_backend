@@ -37,7 +37,6 @@ def clear_old_cart_items():
     is modified and saved.
     """
     now = timezone.now()
-    threshold_time = now - timedelta(seconds=3600)  # Changed to 3600 seconds for one hour
     sessions = Session.objects.all()
 
     for new_session in sessions:
@@ -50,33 +49,17 @@ def clear_old_cart_items():
         products_to_update = []
 
         for item_id, item in cart.items():
-            if 'added_at' in item:
-                added_at = timezone.datetime.fromisoformat(item['added_at'])
-                products_to_update.append((item['id'], item['quantity']))
+            products_to_update.append((item['id'], item['quantity'],item['color'],item['size']))  
 
-                if (now - added_at).total_seconds() >= 3600:  
-                    items_to_delete.append(item_id)
-                    print(f"Deleting item: {item_id}")  
-
-        for item_id in items_to_delete:
-            del cart[str(item_id)]
-
-        for product_id, quantity in products_to_update:
+        for product_id, quantity,color,size in products_to_update:
             try:
-                product = Diversity.objects.get(product_id=product_id)
+                product = Diversity.objects.get(product_id=product_id,color=color,size=size)
                 product.inventory += quantity  
                 product.save()
             except Diversity.DoesNotExist:
                 continue
 
-        new_session.modified = True 
-        session_data['cart'] = cart 
-
-        if not cart:
             new_session.delete()  
-        else:
-            new_session.save()
-
 @shared_task()
 def delete_unpaid_orders():
     """
