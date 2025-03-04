@@ -60,8 +60,8 @@ SECRET_KEY = 'django-insecure-lv_ar-&)i8h(t+(suz+x^i@f$@+_uaz-!0y9!0#93%ste@i%7c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+#CSRF_TRUSTED_ORIGINS = ['*']
 
 # Application definition
 
@@ -88,7 +88,7 @@ ADMIN_SITE_HEADER = 'MaktabShop Admin'
 ADMIN_SITE_TITLE = 'MaktabShop'
 ADMIN_INDEX_TITLE = 'Welcome to MaktabShop'
 ADMIN_INTERFACE_COLOR_SCHEME = 'dark'
-
+LOGIN_REDIRECT_URL = 'MaktabShopAdmin/'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -112,7 +112,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'User.middleware.TokenAuthenticationMiddleware',
-    
+    'User.middleware.CsrfCaptureMiddleware',
 ]
 
 ROOT_URLCONF = 'Online_shop.urls'
@@ -121,6 +121,19 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8001",
 ]
 
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS'
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrftoken'
+]
 CORS_ALLOW_CREDENTIALS = True
 
 
@@ -210,7 +223,7 @@ AUTH_USER_MODEL = 'User.User'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',  # Adjust as needed
+        'LOCATION': 'redis://redis:6379/1',  # Adjust as needed
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
@@ -228,7 +241,7 @@ EMAIL_HOST_PASSWORD = 'ovwwdmlbnkwdwkdj'
 SECURE_COOKIES = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_NAME = 'sessionid'
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/1"
