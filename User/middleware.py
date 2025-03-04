@@ -3,6 +3,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import AccessToken
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.middleware.csrf import get_token
 
 User = get_user_model()
 
@@ -37,3 +38,12 @@ class TokenAuthenticationMiddleware(MiddlewareMixin):
             raise AuthenticationFailed('Invalid token or user does not exist')
 
         return None  # Proceed with the request
+
+class CsrfCaptureMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        if request.method == 'POST':
+            csrf_token = get_token(request)
+            request.csrf_token = csrf_token
+            print("csrf")
+
+        return None

@@ -27,6 +27,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login
 from decimal import Decimal
+from django.middleware.csrf import get_token
 
 class UserList(APIView):
     """API view to list all users."""
@@ -194,8 +195,8 @@ class LoginView(generics.GenericAPIView):
 
         if 'cart' in request.session:
             cart = request.session.pop('cart')
-            request.session.flush() 
-            request.session['cart'] = cart  
+            request.session.flush()
+            request.session['cart'] = cart
 
         login(request, user)
         if user.is_superuser or user.groups.filter(name='is_supervisor').exists():
@@ -221,6 +222,7 @@ class UserCreateView(APIView):
         Returns:
             Response: A Response object with the status of the creation.
         """
+        csrf_token = get_token(request)
         phone_number = request.data.get('phone_number')
         if User.objects.filter(phone_number=phone_number).exists():
             return Response({'message': 'User with this phone number already exists.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -493,7 +495,6 @@ class UserUpdatePassView(APIView):
 
 class HeroGalleryView(APIView):
     """API view to retrieve active hero gallery items."""
-    
     def get(self, request, format=None):
         """
         Retrieve all active hero gallery items.
