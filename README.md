@@ -4,7 +4,7 @@
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [database_set_up](#database-set-up)
+- [database_set_up](#database set up)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
@@ -37,7 +37,7 @@
    ## Step 1: Create a PostgreSQL Database
       Open your terminal or command line interface.
       Access the PostgreSQL command line by running:
-      
+      ```bash
       psql -U postgres
 
       CREATE DATABASE your_database_name;
