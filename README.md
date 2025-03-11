@@ -32,12 +32,12 @@
 
    To set up the PostgreSQL database for this Django project, follow these steps:
 
-   # Requirements
+   ### Requirements
    
       PostgreSQL installed on your machine or access to a PostgreSQL server.
       A database management tool (optional, e.g., pgAdmin, DBeaver) to manage your databases.
       
-   # Step 1: Create a PostgreSQL Database
+   ### Step 1: Create a PostgreSQL Database
    
       Open your terminal or command line interface.
       Access the PostgreSQL command line by running:
@@ -53,7 +53,7 @@
       GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
 
       \q
-   # step 2:Update Database Settings in Django
+   ### step 2:Update Database Settings in Django
 
       In your Django project, you need to configure the database settings in the settings.py file.
 
