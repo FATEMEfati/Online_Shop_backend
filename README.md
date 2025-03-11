@@ -4,7 +4,7 @@
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [database_set_up](#database set up)
+- [database_set_up](#database-set-up)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
@@ -18,6 +18,7 @@
 - Discount management (CRUD operations for discounts)
 - RESTful API for front-end integration
 - Secure and scalable architecture
+- Dockerized for easy deployment and environment consistency
 
 ## Technologies Used
 
@@ -96,6 +97,30 @@
 7.  **Open your browser and navigate to:**
     ```bash
     http://127.0.0.1:8000/
+
+## Docker Installation
+If you prefer to run the project using Docker, you can do so by following these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/FATEMEfati/Online_Shop_backend.git
+   cd online_shop_backend
+
+2. **Build the Docker containers:**
+   ```bash
+   docker-compose build
+
+3. **Run the Docker containers:**
+   ```bash
+   docker-compose up
+4. **Set up the database: In a new terminal, run:**
+    ```bash
+    docker-compose exec web python manage.py migrate
+    
+5. **Create a superuser (optional): You can also create a superuser by running:**
+    ```bash
+    docker-compose exec web python manage.py createsuperuser
+
 
 ## Usage
 After setting up the project, you can use the API to perform various operations related to users, products, and discounts. You can also access the Django admin panel at http://127.0.0.1:8000/admin/ using the superuser credentials you created.
