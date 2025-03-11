@@ -37,7 +37,7 @@
    ## Step 1: Create a PostgreSQL Database
       Open your terminal or command line interface.
       Access the PostgreSQL command line by running:
-         ```bash
+      
       psql -U postgres
 
       CREATE DATABASE your_database_name;
