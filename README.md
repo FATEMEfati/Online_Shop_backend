@@ -4,7 +4,7 @@
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [database_set_up](#database set up)
+- [database_set_up](#database-set-up)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
@@ -29,14 +29,20 @@
 - Git for version control
 
 ## database_set_up
+
    To set up the PostgreSQL database for this Django project, follow these steps:
 
    ## Requirements
+   
       PostgreSQL installed on your machine or access to a PostgreSQL server.
       A database management tool (optional, e.g., pgAdmin, DBeaver) to manage your databases.
+      
    ## Step 1: Create a PostgreSQL Database
+   
       Open your terminal or command line interface.
       Access the PostgreSQL command line by running:
+
+      
       ```bash
       psql -U postgres
 
