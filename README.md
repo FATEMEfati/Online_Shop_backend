@@ -53,6 +53,8 @@
 
       Open settings.py located in your Django project directory.
       Locate the DATABASES setting and update it as follows:
+      
+      
       ```bash
       DATABASES = {
        'default': {
