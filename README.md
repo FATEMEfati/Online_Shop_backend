@@ -38,9 +38,9 @@ To set up the PostgreSQL database for this Django project, follow these steps:
 - A database management tool (optional, e.g., pgAdmin, DBeaver) to manage your databases.
       
 ### Step 1: Create a PostgreSQL Database
-   
-- Open your terminal or command line interface.
-- Access the PostgreSQL command line by running:
+
+1. Open your terminal or command line interface.
+2. Access the PostgreSQL command line by running:
 
       
   ```bash
@@ -55,23 +55,23 @@ To set up the PostgreSQL database for this Django project, follow these steps:
   \q
 ### step 2:Update Database Settings in Django
 
-      1. In your Django project, you need to configure the database settings in the settings.py file.
+1. In your Django project, you need to configure the database settings in the settings.py file.
 
-      2. Open settings.py located in your Django project directory.
-      3. Locate the DATABASES setting and update it as follows:
+2. Open settings.py located in your Django project directory.
+3. Locate the DATABASES setting and update it as follows:
       
       
-          ```bash
-          DATABASES = {
-          'default': {
-          'ENGINE': 'django.db.backends.postgresql',
-          'NAME': 'your_database_name',  # Your database name
-          'USER': 'your_username',        # Your database username
-          'PASSWORD': 'your_password',    # Your database password
-          'HOST': 'localhost',            # Set to 'localhost' for local development
-          'PORT': '5432',                 # Default PostgreSQL port
-              }
-          }
+  ```bash
+  DATABASES = {
+  'default': {
+  'ENGINE': 'django.db.backends.postgresql',
+  'NAME': 'your_database_name',  # Your database name
+  'USER': 'your_username',        # Your database username
+  'PASSWORD': 'your_password',    # Your database password
+  'HOST': 'localhost',            # Set to 'localhost' for local development
+  'PORT': '5432',                 # Default PostgreSQL port
+   }
+  }
 
 
 
