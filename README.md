@@ -63,17 +63,17 @@ To set up the PostgreSQL database for this Django project, follow these steps:
 3. Locate the DATABASES setting and update it as follows:
       
       
-  ```bash
-  DATABASES = {
-  'default': {
-  'ENGINE': 'django.db.backends.postgresql',
-  'NAME': 'your_database_name',  # Your database name
-  'USER': 'your_username',        # Your database username
-  'PASSWORD': 'your_password',    # Your database password
-  'HOST': 'localhost',            # Set to 'localhost' for local development
-  'PORT': '5432',                 # Default PostgreSQL port
+   ```bash
+   DATABASES = {
+   'default': {
+   'ENGINE': 'django.db.backends.postgresql',
+   'NAME': 'your_database_name',  # Your database name
+   'USER': 'your_username',        # Your database username
+   'PASSWORD': 'your_password',    # Your database password
+   'HOST': 'localhost',            # Set to 'localhost' for local development
+   'PORT': '5432',                 # Default PostgreSQL port
+    }
    }
-  }
 
 
 
