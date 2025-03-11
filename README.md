@@ -43,16 +43,16 @@
       Access the PostgreSQL command line by running:
 
       
-      ```bash
-      psql -U postgres
+         ```bash
+         psql -U postgres
 
-      CREATE DATABASE your_database_name;
+         CREATE DATABASE your_database_name;
       
-      CREATE USER your_username WITH PASSWORD 'your_password';
+         CREATE USER your_username WITH PASSWORD 'your_password';
 
-      GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
+         GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
 
-      \q
+         \q
    ### step 2:Update Database Settings in Django
 
       In your Django project, you need to configure the database settings in the settings.py file.
@@ -61,17 +61,17 @@
       Locate the DATABASES setting and update it as follows:
       
       
-       ```bash
-       DATABASES = {
-        'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'your_database_name',  # Your database name
-         'USER': 'your_username',        # Your database username
-         'PASSWORD': 'your_password',    # Your database password
-         'HOST': 'localhost',            # Set to 'localhost' for local development
-         'PORT': '5432',                 # Default PostgreSQL port
-           }
-       }
+          ```bash
+          DATABASES = {
+           'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'your_database_name',  # Your database name
+            'USER': 'your_username',        # Your database username
+            'PASSWORD': 'your_password',    # Your database password
+            'HOST': 'localhost',            # Set to 'localhost' for local development
+            'PORT': '5432',                 # Default PostgreSQL port
+              }
+          }
 
 
 
